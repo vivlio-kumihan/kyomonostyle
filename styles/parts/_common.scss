@@ -62,7 +62,8 @@ li {
   list-style-type: none;
 }
 
-a {
+#kyomonostyle a {
+  color: #333;
   text-decoration: none;
 }
 
@@ -123,6 +124,14 @@ a {
   width: 90%;
   margin: 0 auto;
   max-width: $contentMaxWidth;
+}
+
+#contents {
+  width: 100%;
+}
+section.page .content-box,
+.page .content-box {
+  padding: 0 0;
 }
 
 #main-content {

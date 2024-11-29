@@ -775,7 +775,8 @@ li {
   list-style-type: none;
 }
 
-a {
+#kyomonostyle a {
+  color: #333;
   text-decoration: none;
 }
 
@@ -845,6 +846,15 @@ a {
   width: 90%;
   margin: 0 auto;
   max-width: 1080px;
+}
+
+#contents {
+  width: 100%;
+}
+
+section.page .content-box,
+.page .content-box {
+  padding: 0 0;
 }
 
 #main-content {
@@ -1171,6 +1181,9 @@ a {
     margin-bottom: 2em;
   }
 }
+#kyomonostyle .main__lead {
+  margin-top: 3em;
+}
 @media (min-width: 960px) {
   #kyomonostyle .main__lead-copy {
     line-height: 2;
@@ -1220,28 +1233,23 @@ a {
   }
 }
 #kyomonostyle .main__maker {
-  display: grid;
-  place-content: center;
-  width: 100%;
+  position: relative;
   height: 230px;
-  background-color: unset;
-  background-image: url("../images/1_home_obi_NishikawaPaperIndustry_img-sm.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-clip: border-box;
-  color: inherit;
 }
-#kyomonostyle .main__maker.shop-syouen {
-  background-color: unset;
-  background-image: url("../images/1_home_obi_Syowen_img-sm.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-clip: border-box;
-  color: inherit;
+@media (min-width: 1480px) {
+  #kyomonostyle .main__maker {
+    height: 350px;
+  }
+}
+#kyomonostyle .main__maker > .image-wrapper {
+  height: 100%;
+  margin-bottom: unset;
+}
+#kyomonostyle .main__maker > .wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #kyomonostyle .main__header3, #kyomonostyle .main__item-maker, #kyomonostyle .main__catch-copy {
   font-weight: 900;
@@ -1280,5 +1288,26 @@ a {
 
 .swiper {
   width: 100%;
-  height: 400px;
+  height: 250px;
+}
+@media (min-width: 960px) {
+  .swiper {
+    height: 400px;
+  }
+}
+@media (min-width: 1480px) {
+  .swiper {
+    height: 600px;
+  }
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  --swiper-navigation-size: 30px;
+}
+@media (min-width: 960px) {
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    --swiper-navigation-size: 40px;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -12,6 +12,9 @@
         margin-bottom: 2em;
       }
     }
+    &__lead {
+      margin-top: 3em;
+    }
     &__lead-copy {
       @include mq(lg) {
         line-height: 2;
@@ -58,13 +61,24 @@
       }
     }
     &__maker {
-      display: grid;
-      place-content: center;
-      width: 100%;
+      position: relative;
       height: 230px;
-      @include bg($image: "../images/1_home_obi_NishikawaPaperIndustry_img-sm.jpg");
-      &.shop-syouen {
-        @include bg($image: "../images/1_home_obi_Syowen_img-sm.jpg");
+      // @include bg($image: "/library/common/images/kyomonostyle/1_home_obi_NishikawaPaperIndustry_img-sm.jpg");
+      // &.shop-syouen {
+      //   @include bg($image: "/library/common/images/kyomonostyle/1_home_obi_Syowen_img-sm.jpg");
+      // }
+      @include mq(xl) {
+        height: 350px;
+      }
+      & > .image-wrapper {
+        height: 100%;
+        margin-bottom: unset;
+      }
+      & > .wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
     &__header3,
@@ -107,5 +121,19 @@
 
 .swiper {
   width: 100%;
-  height: 400px;
+  height: 250px;
+  @include mq(lg) {
+    height: 400px;
+  }
+  @include mq(xl) {
+    height: 600px;
+  }
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  --swiper-navigation-size: 30px;
+  @include mq(lg) {
+    --swiper-navigation-size: 40px;
+  }
 }
