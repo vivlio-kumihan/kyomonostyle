@@ -1,0 +1,128 @@
+@use "../globals" as *;
+
+.swiper {
+  overflow: visible !important;
+  @include mq(lg) {
+    padding: 15px 0 50px;
+  }
+}
+
+.swiper-slide {
+  // デフォルトでrelativeに設定してある。
+  // position: relative;
+  height: 425px;
+  overflow: hidden;
+  @include mq(lg) {
+    height: 600px;
+    box-shadow: 0 8px 40px -10px rgba($color: #333, $alpha: .8);
+  }
+  @include mq(xl) {
+    height: 720px;
+    box-shadow: 0 8px 40px -10px rgba($color: #333, $alpha: .8);
+  }
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(2.5);
+    transition: transform 5s ease;
+  }
+  
+  &::after {
+    @include positionAlt(tl);
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 61, 125, .1);
+    // z-index: 1;
+  }
+  &-active {
+    & > img {
+      transform: none;
+    }
+    & > .hero__title {
+      font-size: 1.3rem;
+      opacity: 1;
+      transform: translate(-50%, -50%);
+      @include mq(md) {
+        font-size: 1.4rem;
+      }
+      @include mq(lg) {
+        font-size: 1.6rem;
+      }
+    }
+  } 
+}
+
+.hero {
+  padding-top: 20px;
+  overflow: hidden;
+  margin-bottom: 80px;
+  @include mq(md) {
+    margin-bottom: 0px;
+  }
+
+  &__title {
+    @include positionAlt(50%, 50%, -50%, calc(-50% + 50px));
+    font-size: 20px;
+    letter-spacing: .25em;
+    
+    // これに差し替え
+    // font-size: 40px;
+    // font-family: "Yuji Boku";
+    // color: rgba($color: $cWhite, $alpha: .8);
+    // text-shadow: 0 5px 10px $cTheme;
+
+    color: $cWhite;
+    opacity: 0;
+    transition: opacity 3s ease 1.5s, transform 1s ease;
+    z-index: 2;
+  }
+
+  &__footer {
+    @include positionAlt(
+      calc(100% - 110px), 
+      50%, 
+      -50%, 
+      0%
+    );
+    width: 20px;
+    height: 82px;
+    color: #fff;
+    overflow: hidden;
+    z-index: 2;
+    @include mq(lg) {
+      @include positionAlt(
+        calc(100% - 160px), 
+        50%, 
+        -50%, 
+        0%
+      );
+    }
+  }
+  &__down-allow {
+    @include positionAlt(tl);
+    width: 7px;
+    @include anime (
+      $name: kf-hero-allow-move,
+      $dur: 2s,
+      $itr: infinite,
+      $tim: liner
+    )
+  }
+  &__scorll-text {
+    @include positionAlt(22px, -6px);
+    font-size: 0.9rem;
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes kf-hero-allow-move {
+  0%, 50%, 100% {
+    transform: translateY(-10px);
+  }
+  30% {
+    transform: translateY(0);
+  }
+}

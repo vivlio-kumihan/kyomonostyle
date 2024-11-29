@@ -1,0 +1,348 @@
+// @use '../globals/' as *;
+// @use '../parts/common' as *;
+
+// .annual-event {
+//   &__copy-wrapper {
+//     position: relative;
+//     margin-bottom: 60px !important;
+//     @extend .mb-md;
+//     &::after {
+//       @include positionAlt(cc);
+//       @include bg($image: "../images/vec_kikyou1.svg");
+//       background-color: transparent;
+//       content: "";
+//       width: 325px;
+//       height: 320px;
+//       opacity: .15;
+//       z-index: 1;
+//       @include mq(lg) {
+//         width: 355px;
+//         height: 345px;
+//       }
+//     }
+//   }
+//   &__catch-copy {
+//     position: relative;
+//     margin: 0 auto;
+//     font-size: 1.5rem;
+//     line-height: 3;
+//     font-weight: 600;
+//     letter-spacing: .75em;
+//     writing-mode: vertical-rl;
+//     z-index: 2;
+//     @include mq(lg) {
+//       font-size: 1.6rem;
+//       font-weight: 500;
+//     }
+//   }
+//   &__lead-copy {
+//     position: relative;
+//     font-weight: 500;
+//     line-height: 2;
+//     text-align: center;
+//     z-index: 2;
+//     @include mq(lg) {
+//       font-size: 1.1rem;
+//     }
+//     & .phone {
+//       margin-top: 15px;
+//       line-height: 1;
+//       &__number {
+//         letter-spacing: 2px;
+//       }
+//     }
+//     @include mq(md) {
+//       br {
+//         display: none;
+//       }
+//     }
+//   }
+//   & .event-schedule {
+//     margin: 40px 0 50px;
+//     &::before {
+//       position: unset;
+//     }
+//     &__inner {
+//       @extend .content-width;
+//       padding: 0;
+//       background-color: unset;
+//       @include mq(lg) {
+//         padding: 0;
+//       }
+//     }
+//     & .main-title {
+//       margin: 0;
+//     }
+//     &__all {
+//       @include mq(lg) {
+//         display: flex;
+//         justify-content: space-between;
+//         flex-wrap: wrap;
+//         row-gap: 60px;
+//         position: relative;
+//         &::after {
+//           @include positionAlt(cc);
+//           content: "";
+//           border: 1px dotted $cBlack;
+//           height: 100%;
+//         }
+//       }
+//       .rule-line {
+//         position: relative;
+//         padding: 10px 0 30px;
+//         height: fit-content;
+//         @include mq(lg) {
+//           display: flex;
+//           flex-direction: column;
+//           row-gap: 30px;
+//           flex-basis: calc(50% - 50px);
+//           @for $i from 1 through 8 {
+//             &:nth-child(#{$i}) {
+//               @if $i % 2 == 1 {
+//                 // 奇数のスタイル
+//                 &::before {
+//                   @include positionAlt($top: 83px, $left: 100%);
+//                   content: "";
+//                   width: 50px;
+//                   height: 1px;
+//                   transform: scaleX(0);
+//                   transform-origin: left;
+//                   background-color: rgba($color: $cBlack, $alpha: .7);
+//                 }
+//                 &::after {
+//                   @include positionAlt($top: calc(83px - 5px), $left: calc(100% + 45px) );
+//                   content: "";
+//                   width: 10px;
+//                   height: 10px;
+//                   border-radius: 50%;
+//                   background-color: $cBlack;
+//                   opacity: 0;
+//                 }
+//               } @else {
+//                 // 偶数のスタイル
+//                 margin-top: 100px;
+//                 &::before {
+//                   @include positionAlt($top: calc(83px - 5px), $left: calc(-50px - 5px));
+//                   content: "";
+//                   width: 10px;
+//                   height: 10px;
+//                   border-radius: 50%;
+//                   background-color: $cBlack;
+//                   opacity: 0;
+//                 }
+//                 &::after {
+//                   @include positionAlt($top: 83px, $left: -50px);
+//                   content: "";
+//                   width: 50px;
+//                   height: 1px;
+//                   transform: scaleX(0);
+//                   transform-origin: right;
+//                   background-color: rgba($color: $cBlack, $alpha: .7);
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+
+//       .rule-line.inview {
+//         @include mq(lg) {
+//           @for $i from 1 through 8 {
+//             &:nth-child(#{$i}) {
+//               @if $i % 2 == 1 {
+//                 // 奇数のスタイル
+//                 &::before {
+//                   @include anime($name: scaleX, $dur: .3s, $dly: 1.2s);
+//                 }
+//                 &::after {
+//                   @include anime($name: opacity, $dur: .3s, $dly: 1.4s);
+//                 }
+//               } @else {
+//                 // 偶数のスタイル
+//                 &::before {
+//                   @include anime($name: opacity, $dur: .3s, $dly: 1.4s);
+//                 }
+//                 &::after {
+//                   @include anime($name: scaleX, $dur: .3s, $dly: 1.2s);
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+
+//       // 課題　なぜかできない。
+//       // .rule-line + .rule-line
+//       // .rule-line:not(:first-of-type) {
+
+//       // これは意図通りになる。
+//       li + li {
+//         // こちらも意図通りになる。
+//         // li:not(:first-of-type) {
+//         margin-top: 50px;
+//         @include mq(lg) {
+//           margin: 0;
+//         }
+//       }
+//     }
+//     &__date {
+//       display: inline-block;
+//       @include positionAlt(cc);
+//       top: 0;
+//       display: inline-block;
+//       width: 70%;
+//       padding: 3px 15px 5px;
+//       text-align: center;
+//       font-weight: 600;
+//       line-height: 1;
+//       color: $cWhite;
+//       background-color: $cBlack;
+//       z-index: 2;
+//       @include mq(md) {
+//         width: 40%;
+//       }
+//       @include mq(lg) {
+//         width: 60%;
+//       }
+//     }
+//     &__title {
+//       margin-top: 30px;
+//       font-size: 1.4rem;
+//       line-height: 1;
+//       text-align: center;
+//       letter-spacing: .25em;
+//     }
+//     &__image {
+//       margin-top: 30px;
+//     }
+//     &__catch {
+//       margin-top: 25px;
+//       font-size: 1rem;
+//       line-height: 1;
+//       text-align: center;
+//     }
+//     &__description {
+//       margin-top: 15px;
+//       padding: 0 2em;
+//       text-align: justify;
+//       font-size: .95rem;
+//       line-height: 1.7;
+//       @include mq(md) {
+//         font-size: 1rem;
+//       }
+//     }
+//     & .btn {
+//       margin: 0;
+//     }
+//   }
+//   & .chapter__btn {
+//     margin-top: 25px;
+//     @include mq(lg) {
+//       margin-top: 0;
+//     }
+//     &.to-page-top {
+//       margin-top: 50px;
+//     }
+//   }
+//   & .chapter__btn.to-modal {
+//     button[data-name="event-date-0322"] {
+//       display: none;
+//     }
+//   }  
+// }
+
+// .rule-line {
+//   .line-effect {
+//     position: absolute;
+//     background-color: rgba($color: $cBlack, $alpha: .7);
+//     &.top {
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 1px;
+//       transform: scaleX(0);
+//       transform-origin: left;
+//     }
+//     &.right {
+//       top: 0;
+//       right: 0;
+//       width: 1px;
+//       height: 100%;
+//       transform: scaleY(0);
+//       transform-origin: top;
+//     }
+//     &.bottom {
+//       bottom: 0;
+//       right: 0;
+//       width: 100%;
+//       height: 1px;
+//       transform: scaleX(0);
+//       transform-origin: right;
+//     }
+//     &.left {
+//       bottom: 0;
+//       left: 0;
+//       width: 1px;
+//       height: 100%;
+//       transform: scaleY(0);
+//       transform-origin: bottom;
+//     }
+//   }
+//   &.inview .line-effect {
+//     &.top {
+//       @include anime($name: scaleX, $dur: .3s, $dly: 0s);
+//     }
+//     &.right {
+//       @include anime($name: scaleY, $dur: .3s, $dly: .3s);
+//     }
+//     &.bottom {
+//       @include anime($name: scaleX, $dur: .3s, $dly: .6s);
+//     }
+//     &.left {
+//       @include anime($name: scaleY, $dur: .3s, $dly: .9s);
+//     }
+//   }
+// }
+
+// @keyframes scaleX {
+//   0% {
+//     transform: scaleX(0);
+//   }
+//   100% {
+//     transform: scaleX(1);
+//   }
+// }
+
+// @keyframes scaleY {
+//   0% {
+//     transform: scaleY(0);
+//   }
+//   100% {
+//     transform: scaleY(1);
+//   }
+// }
+
+// @keyframes opacity {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
+
+// // .annual-event-top-image-wrapper {
+// //   height: 70vh;
+// //   @include mq(lg) {
+// //     height: 80vh;
+// //   }
+// // }
+
+// // .annual-event {
+// //   & .header-visual__wrapper {
+// //     height: 70vh;
+// //     @include mq(lg) {
+// //       height: 80vh;
+// //     }
+// //   }
+// // }

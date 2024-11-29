@@ -1,0 +1,24 @@
+@use '../globals/' as *;
+@use '../parts/common' as *;
+
+.footer {
+  padding: 3em 0;
+  line-height: 1;
+  background-color: $cTheme;
+  border-top: 2px solid $cBlackLt;
+  & .copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: .9em;
+    line-height: 1;
+    &__small {
+      font-size: .8em;
+    }
+    & > br {
+      @include mq(lg) {
+        display: none;
+      }
+    }
+  }
+}

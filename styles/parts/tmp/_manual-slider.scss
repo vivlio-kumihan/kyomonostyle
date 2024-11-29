@@ -1,0 +1,290 @@
+@use "../globals" as *;
+
+.browse {
+  position: relative;
+  &__heading {
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 245px;
+    height: 100px;
+    opacity: 0.8;
+    z-index: 5;
+    &.buddhist-statue {
+      @include bg($image: "../images/vec_cultural-heritage_buddihist-statue_land.svg", $color: unset);
+      top: 60px;
+      width: 185px;
+      height: 90px;
+    }
+    &.architectural {
+      @include bg($image: "../images/vec_cultural-heritage_architectural_land.svg", $color: unset);
+      top: -2px;
+    }
+    &.kyooudou {
+      @include bg($image: "../images/vec_cultural-heritage_kyooudou_land.svg", $color: unset);
+      top: 0px;
+      @include mq(md) {
+        top: -50px;
+      }
+    }
+    @include mq(md) {
+      top: 0;
+      left: unset;
+      right: 0px;
+      &.buddhist-statue {
+        @include bg($image: "../images/vec_cultural-heritage_buddihist-statue.svg", $color: unset);
+        top: 170px;
+        width: 100px;
+        height: 300px;
+        @include mq(md) {
+          top: -55px;
+        }
+        @include mq(lg) {
+          top: -60px;
+        }
+      }
+      &.architectural {
+        @include bg($image: "../images/vec_cultural-heritage_architectural.svg", $color: unset);
+        width: 100px;
+        height: 300px;
+        @include mq(lg) {
+          top: -60px;
+        }
+      }
+      &.kyooudou {
+        @include bg($image: "../images/vec_cultural-heritage_kyooudou.svg", $color: unset);
+        width: 100px;
+        height: 300px;
+      }
+    }
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100px;
+    padding-top: 10px;
+    z-index: 10;
+    @include mq(md) {
+      height: 150px;
+    }
+    &.architectural {
+      height: 100px;
+    }
+    &.buddhist-statue {
+      display: block;
+      align-items: unset;
+      height: 220px;
+      @include mq(md) {
+        display: flex;
+        height: 145px;
+      }
+    }
+    & ul + ul {
+      margin-top: 10px;
+    }
+    @include mq(md) {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      gap: 27px;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      overflow: hidden;
+      &.align-items-center {
+        align-items: center;
+      }
+      & ul + ul {
+        margin-top: 0;
+      }
+    }
+  }
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    line-height: 1.25;
+    writing-mode: vertical-rl;
+    @include mq(md) {
+      flex-wrap: nowrap;
+      margin: unset;
+      font-size: 1.1rem;
+    }
+    &.architectural,
+    &.kyooudou {
+      row-gap: 25px;
+    }
+  }
+  &__group {
+    cursor: pointer;
+    &:not(:first-of-type) {
+      margin-right: 10px;
+    }
+  }
+
+  &__name {
+    padding-top: 1em;
+    cursor: pointer;
+    &.group {
+      padding-top: 0em;
+    }
+  }
+
+  &__name-inner {
+    position: relative;
+    z-index: 99;
+  }
+}
+
+#manual-slider {
+  height: calc(100vh - 230px);
+  position: relative;
+  &.add-height-5px {
+    height: calc(100vh - 230px + 5px);
+  }
+  &.add-height-50px {
+    height: calc(100vh - 230px + 50px);
+  }
+  & .area4displaying-slide-name {
+    @include positionAlt(cc);
+    width: 100%;
+    height: 100%;
+    font-weight: 900;
+    color: $cWhite;
+    text-shadow: 1px 1px 2px $cBlack;
+    pointer-events: none;
+    z-index: 10;
+    &__active-name {
+      position: absolute;
+      bottom: 60px;
+      width: 100%;
+      text-align: center;
+      font-family: "Yuji Boku", serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: .1em;
+      text-shadow: 0px 0px 5px black;
+      @include mq(md) {
+        bottom: 90px;
+        font-size: 2rem;
+      }
+      @include mq(lg) {
+        font-size: 1.75rem;
+      }
+    }
+    &__next-name {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 120px;
+      font-size: 1.1rem;
+      writing-mode: vertical-rl;
+    }
+  }
+  & .swiper {
+    height: 100%;
+    padding: 0;
+
+  }
+  & .swiper-wrapper {
+    transform: translate3d(0px, 0px, 0px) !important;
+  }
+  & .swiper-slide {
+    // デフォルトでrelativeに設定してある。
+    // position: relative;
+    height: 100%;
+    // height: calc(100vh - 210px);
+    overflow: hidden;
+    @include mq(lg) {
+      box-shadow: unset;
+    }
+  }
+  & .swiper-slide::after {
+    background-color: unset;
+  }
+  & .swiper-slide {
+    &__btn {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      @include mq(md) {
+        bottom: 15px;
+      }
+      & .btn {
+        font-size: .8rem;
+        line-height: 1;
+        margin-bottom: 35px;
+        padding: 2px 20px;
+        @include mq(md) {
+          font-size: 1rem;
+          padding: 4px 30px;
+        }
+      }
+    }
+  }
+  & picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+      // & .wrapper-for-media-query-image {
+      // }
+
+  & .swiper-button-prev {
+    top: unset;
+    top: 50%;
+    left: 15px;
+    @include mq(lg) {
+      left: 60px;
+    }
+  }
+  & .swiper-button-next {
+    top: unset;
+    top: 50%;
+    transform: translateX(-50%);
+    right: 15px;
+    @include mq(lg) {
+      right: 60px;
+    }
+  }
+  .swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 35px;
+    @include mq(lg) {
+      font-size: 50px;
+    }
+  }
+  // & .swiper-pagination {
+  //   text-align: left;
+  // }
+  // & .swiper-pagination-bullets {
+  //   top: 140px;
+  //   left: 20px;
+  //   width: fit-content;
+  //   height: fit-content;
+  //   background-color: rgba($color: #fff, $alpha: .8);
+  //   .swiper-pagination-bullet {
+  //     display: block;
+  //     width: max-content;
+  //     height: auto;
+  //     margin: 0;
+  //     background-color: unset;
+  //     border-radius: unset;
+  //     opacity: 1;
+  //     &.hidden-from-list {
+  //       display: none;
+  //     }
+  //   }
+  // }
+  & .explain {
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+  }
+}

@@ -1,0 +1,433 @@
+// @use '../globals/' as *;
+// @use '../parts/common' as *;
+
+// // Products
+// .souvenirs {
+//   padding-bottom: 60px;
+//   & .notes {
+//     @extend .content-width;
+//     padding: 80px 0 40px;
+//     font-size: .9rem;
+//     line-height: 1.7;
+//     text-align: justify;
+//     @include mq(md) {
+//       padding: 80px 0 60px;
+//     }
+//     & br {
+//       display: none;
+//     }
+//     @include mq(lg) {
+//       padding: 120px 0 60px;
+//       text-align: inherit;
+//       & > p {
+//         text-align: center
+//       }
+//       & br {
+//         display: block;
+//       }
+//     }
+//     & > h2 {
+//       width: fit-content;
+//       margin: 0 auto 20px;
+//       padding-bottom: 10px;
+//       line-height: 1;
+//       border-bottom: 1px solid $cTheme;
+//     }
+//   }
+//   &__container {
+//     @extend .content-width;
+//     display: flex;
+//     flex-direction: column;
+//     row-gap: 60px;
+//     @include mq(md) {
+//       flex-direction: row;
+//       justify-content: space-between;
+//       gap: 30px;
+//       max-width: $contentMaxWidth;
+//       margin: 0 auto;
+//       padding-bottom: 100px;
+//     }
+//   }
+//   &__header {
+//     padding-bottom: 20px;
+//     font-size: 1.25rem;
+//     font-weight: 600;
+//     line-height: 1;
+//     letter-spacing: 3px;
+//     text-align: center;
+//     margin: 0 auto;
+//   }
+//   & .products-container {
+//     flex-basis: 50%;
+//   }
+//   & .products {
+//     display: flex;
+//     flex-direction: column;
+//     row-gap: 20px;
+//     width: 80%;
+//     margin: 0 auto;
+//     @include mq(md) {
+//       justify-content: space-between;
+//       flex-direction: row;
+//       flex-wrap: wrap;
+//       width: 100%;
+//     }
+//     & .product {
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-between;
+//       gap: 3px;
+//       text-align: center;
+//       padding: 1rem;
+//       border: 2px solid $cThemeLt;
+//       @include mq(md) {
+//         flex-basis: calc(50% - 10px);
+//       }
+//       &__name {
+//         margin-top: 10px;
+//         font-size: .8rem;
+//         font-weight: 600;
+//       }
+//       &__price {
+//         margin-top: 3px;
+//         font-size: .9rem;
+//       }
+//       &__price:after {
+//         content: '円';
+//         font-size: 0.7em;
+//       }
+//       &__image-wrapper {
+//         width: 100%;
+//         aspect-ratio: 1;
+//         object-fit: cover;
+//       }
+//       &__image {
+//         width: 100%;
+//         height: 100%;
+//         transition: .3s all;
+//       }
+//       // 検証用
+//       &__weight {
+//         display: none;
+//         &::after {
+//           content: "g";
+//         }
+//       }
+//       & .toggle-btn, .more-view {
+//         width: 90%;
+//         margin: 10px 0 0;
+//         padding:0;
+//         font-size: .7rem;
+//       }
+//       & .more-view {
+//         background-color: $cThemeUl;
+//       } 
+//     }
+//   }
+
+//   & .cart-container {
+//     flex-basis: calc(50% - 30px);
+//   }
+//   .cart {
+//     padding: 1.5rem 1rem;
+//     font-size: 0.8rem;
+//     border: 2px solid $cThemeLt;
+//     &__item {
+//       display: flex;
+//       flex-direction: column;
+//       &:not(:first-of-type) {
+//         margin-top: 15px;
+//       }
+//       @include mq(md) {
+//         flex-direction: row;
+//         justify-content: space-between;
+//         align-items: center;
+//         animation: .3s add-cart-item;
+//         &:not(:first-of-type) {
+//           margin-top: 20px;
+//         }
+//       }
+//     }
+//     &__item-name {
+//       font-size: .9rem;
+//       @include mq(lg) {
+//         // flex-basis: 30%;
+//       }
+//     }
+//     &__contents-wrapper {
+//       display: flex;
+//       justify-content: space-between;
+//       align-items: center;
+//       gap: 10px;
+//       margin-left: auto;
+//     }
+//     &__item-price, &__item-sub-total {
+//       text-align: right;
+//       &:after {
+//         content: '円';
+//         margin-left: 2px;
+//         font-size: 0.7em;
+//       }      
+//     }
+//     &__item-price {
+//       width: 60px;
+//       // flex-basis: 40%;
+//       &::before {
+//         margin-right: 2px;
+//         content: '単';
+//         font-size: 0.7em;
+//       }      
+//     }
+//     &__item-sub-total {
+//       width: 75px;
+//       // flex-basis: 145px;
+//       &::before {
+//         content: '小計';
+//         margin-right: 2px;
+//         font-size: 0.7em;
+//       }      
+//     }
+//     &__item-types {
+//       flex-basis: 100px;
+//       & > li {
+//         & > .counter {
+//           display: flex;
+//           justify-content: space-between;
+//           align-items: center;
+//           width: 80px;
+//         }
+//       }
+//     }
+//     & .btn__primary, .btn__danger {
+//       // width: 25px;
+//       height: 25px;
+//       aspect-ratio: 1;
+//       margin: 0;
+//       padding: 0;
+//       border-radius: 2px;
+//     }
+//     & .cart__item-type-quantity {
+//       flex-basis: 20%;
+//       text-align: center;
+//     }
+//   }
+  
+//   @keyframes add-cart-item {
+//     from {
+//       margin-left: -200px;
+//       margin-right: 200px;
+//       opacity: 0;
+//     }
+  
+//     to {
+//       margin-left: 0;
+//       margin-right: 0;
+//       opacity: 1;
+//     }
+//   }
+  
+//   .cart__item-removed {
+//     animation: .3s remove-cart-item;
+//   }
+  
+//   @keyframes remove-cart-item {
+//     to {
+//       margin-left: 200px;
+//       margin-right: -200px;
+//       opacity: 0;
+//     }
+//   }
+// }
+
+// .product:hover .product__image {
+//   animation: .5s shake-product-image;
+// }
+
+// @keyframes shake-product-image {
+//   25% {
+//     transform: rotate(-10deg);
+//   }
+//   50% {
+//     transform: rotate(10deg);
+//   }
+//   75% {
+//     transform: rotate(-10deg);
+//   }
+//   100% {
+//     transform: rotate(0deg);
+//   }
+// }
+
+// .order-confirm, .order-back-to-cart, .start-app-process, .order-back-to-home {
+//   width: 100%;
+//   margin-top: 20px;
+//   padding: 10px 0;
+//   font-weight: 900;
+//   text-align: center;
+//   letter-spacing:.1em;
+//   background-color: $cThemeUl;
+//   border: unset;
+//   border-radius: 10px;
+//   transform: translateY(5px);
+//   transition: 0.3s;
+//   &:hover {
+//     transform: translateX(0);
+//     box-shadow: 0px 10px 10px -6px $cBlackLt;
+//   }
+//   @include mq(lg) {
+//     margin-top: 30px;
+//   }
+// }
+// .order-back-to-cart, .start-app-process, .order-back-to-home {
+//   width: 100%;
+//   @include mq(lg) {
+//     display: block;
+//     width: 400px;
+//     margin: 30px auto 0 ;
+//     padding: 10px 0;
+//   }
+// }
+// .order-back-to-cart {
+//   background-color: $cBgGray;
+// }
+
+
+// .order-container, .order-thanks {
+//   position: fixed;
+//   top: 0%;
+//   left: 100%;
+//   width: 100%;
+//   max-width: unset;
+//   height: 100%;
+//   padding: 4rem 3rem 6rem;
+//   background-color: #fff;
+//   overflow-y: scroll;
+//   transition: .5s;
+//   visibility: hidden;
+//   opacity: 0;
+//   z-index: 100;
+//   @include mq(lg) {
+//     justify-content: center;
+//   }
+//   &.active {
+//     left: 0;
+//     visibility: visible;
+//     opacity: 1;
+//   }
+//   &__header {
+//     text-align: center;
+//   }
+//   &__lead {
+//     margin: 30px 0 60px;
+//     padding: 3em 20%;
+//     font-size: 1.1rem;
+//     text-align: center;
+//     background-color: #eee;
+//     & > p:not(:first-of-type) {
+//       margin-top: .75em
+//     }
+//     & strong {
+//       color: rgb(159, 1, 1)
+//     }
+//   }
+
+// }
+
+// .order-form {
+//   @extend .content-width;
+//   width: 100%;
+//   &__item-wrapper {
+//     display: flex;
+//     justify-content: space-between;
+//     @include mq(lg) {
+//       justify-content: center;
+//       column-gap: 1em;
+//       &:not(:first-of-type) {
+//         margin-top: 20px;
+//       }
+//     }
+//   }
+//   &__item-wrapper:not(:first-of-type) {
+//     margin-top: 20px;
+//   }
+//   &__label {
+//     flex-basis: 25%;
+//     @include mq(lg) {
+//       flex-basis: 7%;
+//     }
+//   }
+//   &__input {
+//     flex-basis: 75%;
+//     @include mq(lg) {
+//       flex-basis: 50%;
+//       border: 1px solid #ddd;
+//     }
+//   }
+//   &__textarea {
+//     height: 8rem;
+//     flex-basis: 75%;
+//     @include mq(lg) {
+//       flex-basis: 50%;
+//       border: 1px solid #ddd;
+//     }
+//   }
+// }
+
+// .ordered-result {
+//   justify-content: flex-start;
+//   margin-bottom: 20px;
+//   font-size: .95rem;
+//   line-height: 1;
+//   &__sub-total {
+//     display: flex;
+//     justify-content: center;
+//     gap: 20px;
+//     flex-wrap: wrap;
+//   }
+//   &__item {
+//     // flex-basis: 16%;
+//     & > div {
+//       margin-top: 7px;
+//     }
+//   }
+//   &__item-name {
+//     position: relative;
+//     padding-left: 50px;
+//     font-size: 1.1rem;
+//     line-height: 1.15;
+//     & span {
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       font-size: .95rem;
+//     }
+//   }
+//   &__total {
+//     margin: 20px 0;
+//     padding-top: 20px;
+//     font-weight: 600;
+//     border-top: 1px dotted $cBlack;
+//   }
+//   &__total-list {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     gap: 15px;
+//     @include mq(lg) {
+//       flex-direction: row;
+//       justify-content: center;
+//       align-items: center;
+//       gap: 30px;
+//     }
+//   }
+//   &__total-total-amount {
+//     font-size: 1.25rem;
+//     & > span {
+//       font-size: 0.8em;
+//     }
+//   }
+// }
+
+// .ordered-content {
+//   display: none;
+// }

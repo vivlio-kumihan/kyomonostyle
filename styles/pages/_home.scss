@@ -1,0 +1,111 @@
+@use '../globals/' as *;
+@use '../parts/common' as *;
+
+#kyomonostyle {
+  text-align: center;
+  .main {   
+    &__header2 {
+      margin-bottom: .5em;
+      font-size: 1.4em;
+      letter-spacing: .25em;
+      @include mq(lg) {
+        margin-bottom: 2em;
+      }
+    }
+    &__lead-copy {
+      @include mq(lg) {
+        line-height: 2;
+      }
+    }
+    &__inner {
+      padding: 2em 0 1em;
+      @include mq(lg) {
+        padding: 5em 0 2em;
+      }
+    }
+    &__item-index {
+      @include mq(lg) {
+        display: flex;
+        justify-content: center;
+
+      }
+      & > li {
+        & > a {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: .5em;
+          line-height: 1;
+        }
+      }
+      &.image-wrapper {
+        margin-bottom: unset;
+      }
+      & > li:not(:first-of-type) {
+        margin-top: 1em;
+        @include mq(lg) {
+          margin-top: unset;
+        }
+      }
+      & .image-wrapper {
+        width: 60%; // 固定の幅を指定
+        height: 60%; // 高さを幅と同じにする
+        border-radius: 50%; // 丸くする
+        overflow: hidden;
+        @include mq(lg) {
+          width: 90%;
+        }
+      }
+    }
+    &__maker {
+      display: grid;
+      place-content: center;
+      width: 100%;
+      height: 230px;
+      @include bg($image: "../images/1_home_obi_NishikawaPaperIndustry_img-sm.jpg");
+      &.shop-syouen {
+        @include bg($image: "../images/1_home_obi_Syowen_img-sm.jpg");
+      }
+    }
+    &__header3,
+    &__item-maker,
+    &__catch-copy {
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 2px 2px 4px #000;
+    }
+    &__header3 {
+      margin-bottom: .75em;
+      font-size: 1.5rem;
+    }
+    &__item-maker,
+    &__catch-copy {
+      font-size: 1.1em;
+    }
+    &__catch-copy {
+      display: flex;
+      flex-direction: column;
+      gap: .5em;
+      margin-top: .75em;
+      line-height: 1;
+      @include mq(lg) {
+        flex-direction: row;
+        gap: 1.25em;
+      }
+    }
+    &__item-fee {
+      font-weight: 900;
+      font-feature-settings: "palt" 1;
+      color: red;
+      & > span {
+        color: #333;
+        font-size: .8em;
+      }
+    }
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 400px;
+}

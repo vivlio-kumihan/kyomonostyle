@@ -1,0 +1,24 @@
+@use "../globals" as *;
+@use '../parts/common' as *;
+
+.header {
+  &__page-title {
+    width: 50%;
+    margin: 0 auto;
+    padding: 3em 0 2em;
+    margin-bottom: unset;
+    @include mq(lg) {
+      width: 25%;
+      padding: 3em 0 1em;
+    }
+  }
+  @include mq(lg) {
+    @include bg($image: "");
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    max-width: 1080px;
+    width: 90%;
+    height: $navHeight;
+  }
+}
